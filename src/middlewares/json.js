@@ -4,11 +4,10 @@ export async function json(req, res) {
     buffers.push(chunk);
   }
   try {
-    req.body = JSON.parse(Buffer.concat(buffers).toString())
-     
+    // eslint-disable-next-line no-undef
+    req.body = JSON.parse(Buffer.concat(buffers).toString());
   } catch (err) {
     req.body = null;
   }
-  res.setHeader("Content-type", "application/json")
-
+  res.setHeader('Content-type', 'application/json');
 }

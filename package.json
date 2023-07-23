@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/brunotetzner/rocketseat-challenge-1-tasks#readme",
   "dependencies": {
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^3.3.1",
+    "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0"
   }
 }
