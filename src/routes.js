@@ -53,6 +53,22 @@ export const routes = [
     },
   },
   {
+    method: 'POST',
+    path: buildRoutePath('/tasks/csv'),
+    handler: (req, res) => {
+      const { body } = req;
+      body.map((task) => {
+        if (task.title && task.description) {
+          database.insert('task', {
+            title: task.title,
+            description: task.description,
+          });
+        }
+      });
+      return res.writeHead(201).end();
+    },
+  },
+  {
     method: 'PUT',
     path: buildRoutePath('/tasks/:id'),
     handler: (req, res) => {

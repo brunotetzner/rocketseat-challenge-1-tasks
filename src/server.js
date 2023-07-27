@@ -1,14 +1,20 @@
-import http from "node:http";
-import { json } from "./middlewares/json.js";
-import { routes } from "./routes.js";
-import { extractQueryParams } from "./utils/extract-query-params.js";
+import http from 'node:http';
+import { json } from './middlewares/json.js';
+import { csvJSON } from './middlewares/csv.js';
 
-console.log("\n STARTING...\n");
+import { routes } from './routes.js';
+import { extractQueryParams } from './utils/extract-query-params.js';
+
+console.log('\n STARTING...\n');
 
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
-  await json(req, res);
+  if (url.includes('csv')) {
+    await csvJSON(req, res);
+  } else {
+    await json(req, res);
+  }
 
   const route = routes.find((route) => {
     return route.method === method && route.path.test(url);

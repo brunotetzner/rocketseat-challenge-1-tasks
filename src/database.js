@@ -54,7 +54,6 @@ export class DataBase {
 
   update(table, id, data) {
     const rowIndex = this.#database[table].findIndex((row) => row.id === id);
-    console.log(rowIndex);
     if (rowIndex > -1) {
       for (const key in data) {
         if (!data[key]) {
