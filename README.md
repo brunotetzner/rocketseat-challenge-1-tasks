@@ -4,6 +4,8 @@ This documentation provides an overview of the routes and their functionalities 
 
 ## Table of Contents
 
+---
+
 ### GET /tasks
 
 Retrieves a list of all tasks from the database.
@@ -11,11 +13,16 @@ Retrieves a list of all tasks from the database.
 - Method: GET
 - Path: /tasks
 
-**Response**
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 200 OK
+Content-Type: application/json
+Body: An array of tasks in JSON format.
+</code></pre>
+</details>
 
-- Status: 200 OK
-- Content-Type: application/json
-- Body: An array of tasks in JSON format.
+---
 
 ### GET /tasks/:id
 
@@ -28,17 +35,25 @@ Retrieves a specific task with the given ID from the database.
 
 - id (string) - The ID of the task to retrieve.
 
-**Response**
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 200 OK
+Content-Type: application/json
+Body: The task object in JSON format.
+</code></pre>
+</details>
 
-- Status: 200 OK
-- Content-Type: application/json
-- Body: The task object in JSON format.
+<details>
+<summary><strong>Error Responses</strong></summary>
+<pre><code>
+Status: 404 Not Found
+Content-Type: application/json
+Body: { "err": "taskNotFound" }
+</code></pre>
+</details>
 
-**Error Responses**
-
-- Status: 404 Not Found
-- Content-Type: application/json
-- Body: { "err": "taskNotFound" }
+---
 
 ### POST /tasks
 
@@ -47,21 +62,33 @@ Creates a new task and adds it to the database.
 - Method: POST
 - Path: /tasks
 
-**Request Body**
-The request body must be a JSON object containing the following properties:
+<details>
+<summary><strong>Request Body</strong></summary>
+<pre><code>
+{
+  "title": "Task Title",
+  "description": "Task Description"
+}
+</code></pre>
+</details>
 
-- title (string, required) - The title of the task.
-- description (string, required) - The description of the task.
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 201 Created
+</code></pre>
+</details>
 
-**Response**
+<details>
+<summary><strong>Error Responses</strong></summary>
+<pre><code>
+Status: 400 Bad Request
+Content-Type: application/json
+Body: { "err": "titleIsRequired" }
+</code></pre>
+</details>
 
-- Status: 201 Created
-
-**Error Responses**
-
-- Status: 400 Bad Request
-- Content-Type: application/json
-- Body: { "err": "titleIsRequired" }
+---
 
 ### POST /tasks/csv
 
@@ -70,15 +97,34 @@ Creates multiple tasks from a CSV (Comma Separated Values) file and adds them to
 - Method: POST
 - Path: /tasks/csv
 
-**Request Body**
-The request body must be an array of task objects in JSON format. Each task object should have the following properties:
+<details>
+<summary><strong>Request Body</strong></summary>
+<pre><code>
+[
+  {
+    "title": "Task 1",
+    "description": "Description 1"
+  },
+  {
+    "title": "Task 2",
+    "description": "Description 2"
+  },
+  {
+    "title": "Task 3",
+    "description": "Description 3"
+  }
+]
+</code></pre>
+</details>
 
-- title (string, required) - The title of the task.
-- description (string, required) - The description of the task.
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 201 Created
+</code></pre>
+</details>
 
-**Response**
-
-- Status: 201 Created
+---
 
 ### PUT /tasks/:id
 
@@ -91,21 +137,33 @@ Updates an existing task with the given ID in the database.
 
 - id (string) - The ID of the task to update.
 
-**Request Body**
-The request body must be a JSON object containing the following properties:
+<details>
+<summary><strong>Request Body</strong></summary>
+<pre><code>
+{
+  "title": "Updated Task Title",
+  "description": "Updated Task Description"
+}
+</code></pre>
+</details>
 
-- title (string, required) - The updated title of the task.
-- description (string, required) - The updated description of the task.
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 204 No Content
+</code></pre>
+</details>
 
-**Response**
+<details>
+<summary><strong>Error Responses</strong></summary>
+<pre><code>
+Status: 404 Not Found
+Content-Type: application/json
+Body: { "err": "taskNotFound" }
+</code></pre>
+</details>
 
-- Status: 204 No Content
-
-**Error Responses**
-
-- Status: 404 Not Found
-- Content-Type: application/json
-- Body: { "err": "taskNotFound" }
+---
 
 ### PATCH /tasks/:id/complete
 
@@ -118,15 +176,23 @@ Marks a specific task as completed with the given ID in the database.
 
 - id (string) - The ID of the task to mark as completed.
 
-**Response**
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 204 No Content
+</code></pre>
+</details>
 
-- Status: 204 No Content
+<details>
+<summary><strong>Error Responses</strong></summary>
+<pre><code>
+Status: 404 Not Found
+Content-Type: application/json
+Body: { "err": "taskNotFound" }
+</code></pre>
+</details>
 
-**Error Responses**
-
-- Status: 404 Not Found
-- Content-Type: application/json
-- Body: { "err": "taskNotFound" }
+---
 
 ### DELETE /tasks/:id
 
@@ -139,12 +205,20 @@ Deletes a specific task with the given ID from the database.
 
 - id (string) - The ID of the task to delete.
 
-**Response**
+<details>
+<summary><strong>Response</strong></summary>
+<pre><code>
+Status: 204 No Content
+</code></pre>
+</details>
 
-- Status: 204 No Content
+<details>
+<summary><strong>Error Responses</strong></summary>
+<pre><code>
+Status: 404 Not Found
+Content-Type: application/json
+Body: { "err": "taskNotFound" }
+</code></pre>
+</details>
 
-**Error Responses**
-
-- Status: 404 Not Found
-- Content-Type: application/json
-- Body: { "err": "taskNotFound" }
+---
